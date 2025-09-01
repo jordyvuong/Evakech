@@ -1,0 +1,200 @@
+---
+// Services Component
+---
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">
+        Nos <span class="outline-text">Services</span>
+      </h2>
+    </div>
+    
+    <div class="services-grid">
+      <div class="service-item">
+        <div class="service-number">01</div>
+        <h3 class="service-name">Gestion de Biens Premium</h3>
+        <p class="service-description">
+          Confiez-nous vos propriétés d'exception. Nous maximisons vos revenus 
+          tout en préservant la valeur de votre patrimoine.
+        </p>
+        <ul class="service-list">
+          <li>Optimisation Airbnb & Booking</li>
+          <li>Shooting photo professionnel</li>
+          <li>Check-in/out & accueil personnalisé</li>
+          <li>Ménage hôtelier & linge premium</li>
+          <li>Maintenance & interventions 24/7</li>
+          <li>Reporting mensuel transparent</li>
+        </ul>
+      </div>
+      
+      <div class="service-item">
+        <div class="service-number">02</div>
+        <h3 class="service-name">Conciergerie VIP & Lifestyle</h3>
+        <p class="service-description">
+          Services sur-mesure pour une clientèle exigeante. 
+          Votre assistant personnel pour une vie sans contraintes.
+        </p>
+        <ul class="service-list">
+          <li>Chauffeur privé & transferts VIP</li>
+          <li>Réservations exclusives restaurants & clubs</li>
+          <li>Chef à domicile & spa privatisé</li>
+          <li>Organisation d'événements privés</li>
+          <li>Services santé & bien-être</li>
+          <li>Packages exclusifs CAN 2025</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    min-height: 100vh;
+    padding: 120px 0;
+    background: linear-gradient(180deg, rgba(248, 245, 240, 0.5) 0%, rgba(255, 255, 255, 0.9) 100%);
+    position: relative;
+  }
+
+  .services::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(180deg, rgba(248, 245, 240, 0.8) 0%, transparent 100%);
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .section-title {
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 300;
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+    color: #0D0D0D;
+  }
+
+  .outline-text {
+    -webkit-text-stroke: 1px var(--gold);
+    -webkit-text-fill-color: transparent;
+    font-weight: 500;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+    margin-top: 80px;
+  }
+
+  .service-item {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(207, 174, 112, 0.2);
+    border-radius: 30px;
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  }
+
+  .service-item::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--gold), transparent, var(--gold));
+    border-radius: 30px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.5s ease;
+    animation: rotate 4s linear infinite;
+  }
+
+
+
+  .service-item:hover::before {
+    opacity: 0.5;
+  }
+
+  .service-item:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 20px 50px rgba(207, 174, 112, 0.15);
+  }
+
+  .service-number {
+    font-size: 80px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-hover) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+  }
+
+  .service-name {
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: #0D0D0D;
+  }
+
+  .service-description {
+    color: rgba(13, 13, 13, 0.7);
+    margin-bottom: 30px;
+    line-height: 1.6;
+  }
+
+  .service-list {
+    list-style: none;
+    margin-top: 30px;
+  }
+
+  .service-list li {
+    padding: 15px 0;
+    color: rgba(13, 13, 13, 0.7);
+    position: relative;
+    padding-left: 30px;
+    transition: all 0.3s ease;
+  }
+
+  .service-list li:hover {
+    color: #0D0D0D;
+    transform: translateX(10px);
+  }
+
+  .service-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    transition: transform 0.3s ease;
+  }
+
+  .service-list li:hover::before {
+    transform: translateX(5px);
+  }
+
+  @media (max-width: 768px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

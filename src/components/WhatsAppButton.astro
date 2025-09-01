@@ -1,0 +1,53 @@
+---
+// WhatsApp Button Component
+const phoneNumber = "212720838167";
+const message = "Bonjour, je souhaite obtenir plus d'informations sur vos services de conciergerie.";
+const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+---
+
+<a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="whatsapp-btn" aria-label="Contactez-nous sur WhatsApp">
+  💬
+</a>
+
+<style>
+  .whatsapp-btn {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 35px;
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 999;
+    animation: float-btn 3s ease-in-out infinite;
+    text-decoration: none;
+  }
+
+  @keyframes float-btn {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(10deg); }
+  }
+
+  .whatsapp-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    .whatsapp-btn {
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      font-size: 30px;
+    }
+  }
+</style>

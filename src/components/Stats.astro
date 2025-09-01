@@ -1,0 +1,141 @@
+---
+// Stats Component
+---
+
+<section class="stats" id="stats">
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value" data-target="98">0%</div>
+      <div class="stat-label">Satisfaction Client</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">24/7</div>
+      <div class="stat-label">Disponibilité</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" data-target="30">+0%</div>
+      <div class="stat-label">Rentabilité Moyenne</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">2025</div>
+      <div class="stat-label">Partenaire CAN</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Animation des chiffres au scroll
+  const observerOptions = {
+    threshold: 0.5,
+    rootMargin: '0px'
+  };
+
+  const animateValue = (obj: HTMLElement, start: number, end: number, duration: number, suffix: string = '') => {
+    let startTimestamp: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const currentValue = Math.floor(progress * (end - start) + start);
+      obj.textContent = currentValue + suffix;
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const statValues = entry.target.querySelectorAll('[data-target]');
+        statValues.forEach((stat) => {
+          const target = parseInt((stat as HTMLElement).dataset.target || '0');
+          const suffix = stat.textContent?.includes('%') ? '%' : '';
+          const prefix = stat.textContent?.includes('+') ? '+' : '';
+          animateValue(stat as HTMLElement, 0, target, 2000, prefix + suffix);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  const statsSection = document.querySelector('.stats');
+  if (statsSection) {
+    observer.observe(statsSection);
+  }
+</script>
+
+<style>
+  .stats {
+    padding: 100px 0;
+    background: linear-gradient(135deg, rgba(234, 216, 192, 0.3) 0%, rgba(248, 245, 240, 0.5) 100%);
+    position: relative;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .stat-card {
+    text-align: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    border: 1px solid rgba(207, 174, 112, 0.2);
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+  }
+
+  .stat-card:nth-child(1) { animation-delay: 0.1s; }
+  .stat-card:nth-child(2) { animation-delay: 0.2s; }
+  .stat-card:nth-child(3) { animation-delay: 0.3s; }
+  .stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .stat-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+    box-shadow: 0 15px 40px rgba(207, 174, 112, 0.15);
+  }
+
+  .stat-value {
+    font-size: 56px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-hover) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+  }
+
+  .stat-label {
+    color: rgba(13, 13, 13, 0.6);
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

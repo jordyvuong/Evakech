@@ -1,0 +1,121 @@
+---
+// Hero Component
+---
+
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Conciergerie Premium • Marrakech</div>
+    <h1>
+      L'art de vivre<br>
+      <span class="gradient-text">Marrakech</span><br>
+      sans compromis
+    </h1>
+    <p class="hero-subtitle">
+      Gestion de biens d'exception • Expériences VIP sur-mesure<br>
+      Votre partenaire de confiance pour une vie sans contraintes
+    </p>
+    
+    <div class="hero-cards">
+      <div class="glass-card">
+        <span class="card-icon">🏡</span>
+        <h3 class="card-title">Propriétaires</h3>
+        <p class="card-description">
+          Maximisez vos revenus locatifs avec notre gestion premium clé-en-main
+        </p>
+        <a href="#services" class="card-cta">
+          Découvrir →
+        </a>
+      </div>
+      
+      <div class="glass-card">
+        <span class="card-icon">✨</span>
+        <h3 class="card-title">Services VIP</h3>
+        <p class="card-description">
+          Conciergerie privée & lifestyle pour une expérience d'exception
+        </p>
+        <a href="#services" class="card-cta">
+          Explorer →
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="scroll-indicator">
+    <span></span>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(248, 245, 240, 0.95) 0%, rgba(234, 216, 192, 0.4) 100%);
+    overflow: hidden;
+    padding-top: 1%;
+    padding-bottom: 10%;
+  }
+  
+  .hero-cards {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  .glass-card {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .glass-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+  }
+  
+  .card-description {
+    color: #64748b;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+  
+  .card-cta {
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+  }
+  
+  .card-cta:hover {
+    opacity: 0.8;
+  }
+  
+  @media (max-width: 768px) {
+    .hero-cards {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+  
+</style>
