@@ -1,0 +1,149 @@
+---
+// Gallery Component - Inspiré de Chic Morocco avec images d'été et piscines
+---
+
+<section class="gallery-section" id="gallery">
+  <div class="gallery-content">
+    <h2 class="gallery-title">
+      Expériences <span class="gradient-text">d'Exception</span>
+    </h2>
+    <p class="gallery-subtitle">
+      Découvrez nos propriétés exclusives avec piscines privées et espaces d'été d'exception, 
+      où luxe et confort se rencontrent pour créer des moments inoubliables.
+    </p>
+
+    <!-- Cards avec images de fond inspirées de Chic Morocco -->
+    <div class="image-cards">
+      <div class="image-card pool-villa">
+        <div class="image-card-content">
+          <h3 class="image-card-title">Villas Privées</h3>
+          <p class="image-card-description">
+            Profitez de votre propre oasis avec piscines privées et jardins exclusifs dans nos villas d'exception.
+          </p>
+        </div>
+      </div>
+
+      <div class="image-card luxury-pool">
+        <div class="image-card-content">
+          <h3 class="image-card-title">Piscines de Luxe</h3>
+          <p class="image-card-description">
+            Des espaces aquatiques à couper le souffle, conçus pour votre détente et votre plaisir estival.
+          </p>
+        </div>
+      </div>
+
+      <div class="image-card summer-terrace">
+        <div class="image-card-content">
+          <h3 class="image-card-title">Terrasses d'Été</h3>
+          <p class="image-card-description">
+            Espaces extérieurs raffinés où chaque coucher de soleil devient un moment d'exception.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Galerie principale -->
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img 
+          src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+          alt="Villa avec piscine privée"
+          class="gallery-item-image"
+          loading="lazy"
+        />
+        <div class="gallery-item-overlay">
+          <span>Villa Exclusive</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img 
+          src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+          alt="Piscine de luxe"
+          class="gallery-item-image"
+          loading="lazy"
+        />
+        <div class="gallery-item-overlay">
+          <span>Piscine de Rêve</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img 
+          src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+          alt="Terrasse d'été"
+          class="gallery-item-image"
+          loading="lazy"
+        />
+        <div class="gallery-item-overlay">
+          <span>Terrasse Zen</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img 
+          src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+          alt="Hôtel de luxe"
+          class="gallery-item-image"
+          loading="lazy"
+        />
+        <div class="gallery-item-overlay">
+          <span>Hôtel Prestige</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img 
+          src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+          alt="Restaurant avec vue"
+          class="gallery-item-image"
+          loading="lazy"
+        />
+        <div class="gallery-item-overlay">
+          <span>Gastronomie</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img 
+          src="https://images.unsplash.com/photo-1540541338287-41700207dee6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+          alt="Spa wellness"
+          class="gallery-item-image"
+          loading="lazy"
+        />
+        <div class="gallery-item-overlay">
+          <span>Spa & Wellness</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Animation d'apparition au scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const element = entry.target as HTMLElement;
+        element.style.opacity = '1';
+        element.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  // Observer tous les éléments de la galerie
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.gallery-item, .image-card').forEach((el, index) => {
+      const element = el as HTMLElement;
+      element.style.opacity = '0';
+      element.style.transform = 'translateY(30px)';
+      element.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+      observer.observe(element);
+    });
+  });
+</script>
