@@ -13,6 +13,9 @@
     <div class="services-grid">
       <div class="service-item">
         <div class="service-number">01</div>
+        <div class="service-image-container blue-gradient">
+          <img src="/services/maroc.jpg" alt="Marrakech" class="service-image" />
+        </div>
         <h3 class="service-name">Gestion de Biens Premium</h3>
         <p class="service-description">
           Confiez-nous vos propriétés d'exception. Nous maximisons vos revenus 
@@ -30,6 +33,9 @@
       
       <div class="service-item">
         <div class="service-number">02</div>
+        <div class="service-image-container pink-gradient">
+          <img src="/services/concierge.jpg" alt="Lifestyle VIP" class="service-image" />
+        </div>
         <h3 class="service-name">Conciergerie VIP & Lifestyle</h3>
         <p class="service-description">
           Services sur-mesure pour une clientèle exigeante. 
@@ -190,6 +196,56 @@
 
   .service-list li:hover::before {
     transform: translateX(5px);
+  }
+
+  .service-image-container {
+    width: 100%;
+    height: 200px;
+    border-radius: 20px;
+    margin: 20px 0 30px 0;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .blue-gradient {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  }
+
+  .pink-gradient {
+    background: linear-gradient(135deg, #ec4899 0%, #f97316 100%);
+  }
+
+  .service-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .service-image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+    border-radius: 20px;
+  }
+
+  .service-item:hover .service-image-container::before {
+    opacity: 1;
+  }
+
+  .service-item:hover .service-image {
+    transform: scale(1.05);
   }
 
   @media (max-width: 768px) {

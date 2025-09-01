@@ -120,10 +120,12 @@
 </section>
 
 <script>
-  // Animation d'apparition au scroll
+  // Animation d'apparition au scroll - optimisée pour mobile
+  const isMobile = window.innerWidth <= 768;
+  
   const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: isMobile ? 0.05 : 0.1,
+    rootMargin: isMobile ? '0px 0px -20px 0px' : '0px 0px -50px 0px'
   };
 
   const observer = new IntersectionObserver((entries) => {
@@ -132,18 +134,139 @@
         const element = entry.target as HTMLElement;
         element.style.opacity = '1';
         element.style.transform = 'translateY(0)';
+        element.classList.add('animated');
       }
     });
   }, observerOptions);
 
   // Observer tous les éléments de la galerie
-  document.addEventListener('DOMContentLoaded', () => {
+  const initializeAnimations = () => {
     document.querySelectorAll('.gallery-item, .image-card').forEach((el, index) => {
       const element = el as HTMLElement;
-      element.style.opacity = '0';
-      element.style.transform = 'translateY(30px)';
-      element.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-      observer.observe(element);
+      if (!element.classList.contains('animated')) {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        
+        // Délai d'animation plus court sur mobile
+        const delay = isMobile ? index * 0.05 : index * 0.1;
+        element.style.transition = `opacity 0.6s ease ${delay}s, transform 0.6s ease ${delay}s`;
+        
+        observer.observe(element);
+      }
     });
+  };
+
+  // Initialiser après le chargement du DOM
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeAnimations);
+  } else {
+    initializeAnimations();
+  }
+
+  // Réinitialiser si la taille d'écran change
+  let resizeTimeout: number;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = window.setTimeout(() => {
+      observer.disconnect();
+      initializeAnimations();
+    }, 250);
   });
 </script>
+
+<style>
+  /* Styles responsives spécifiques pour la galerie */
+  @media (max-width: 768px) {
+    .gallery-section {
+      padding: 80px 20px;
+    }
+    
+    .gallery-title {
+      margin-bottom: 20px;
+    }
+    
+    .gallery-subtitle {
+      margin-bottom: 60px;
+      font-size: 18px;
+      padding: 0 10px;
+    }
+    
+    /* Amélioration des cartes d'images sur tablette */
+    .image-cards {
+      margin-bottom: 60px;
+    }
+    
+    .image-card-title {
+      font-size: 20px;
+    }
+    
+    .image-card-description {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .gallery-section {
+      padding: 60px 15px;
+    }
+    
+    .gallery-title {
+      font-size: clamp(36px, 8vw, 48px);
+      margin-bottom: 15px;
+    }
+    
+    .gallery-subtitle {
+      margin-bottom: 40px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    
+    /* Optimisation des cartes pour mobile */
+    .image-cards {
+      margin-bottom: 40px;
+      gap: 15px;
+    }
+    
+    .image-card {
+      height: 250px;
+      border-radius: 15px;
+    }
+    
+    .image-card-content {
+      bottom: 15px;
+      left: 15px;
+      right: 15px;
+    }
+    
+    .image-card-title {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    
+    .image-card-description {
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    
+    /* Optimisation de la galerie principale pour mobile */
+    .gallery-grid {
+      gap: 15px;
+    }
+    
+    .gallery-item {
+      border-radius: 15px;
+      aspect-ratio: 4/3;
+    }
+    
+    .gallery-item-overlay {
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+  }
+
+  /* Classe pour éviter la réanimation */
+  .animated {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+</style>
