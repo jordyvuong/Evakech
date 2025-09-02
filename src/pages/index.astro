@@ -20,16 +20,57 @@ import '../styles/global.css';
     <Trust />
     
     <section class="cta" id="cta">
-      <div class="cta-content">
-        <h2 class="cta-title">
-          Prêt pour
-          <span>l'excellence ?</span>
-        </h2>
-        <p class="cta-subtitle">
-          Un concierge Evakech vous répond dans les 2h maximum
-        </p>
+      {/* Background géométrique animé */}
+      <div class="cta-background">
+        <div class="geometric-shape shape-1"></div>
+        <div class="geometric-shape shape-2"></div>
+        <div class="geometric-shape shape-3"></div>
+        <div class="geometric-shape shape-4"></div>
+      </div>
+      
+      <div class="cta-container">
+        {/* Colonne gauche - Information */}
+        <div class="cta-info">
+          <h2 class="cta-title">
+            Prêt pour
+            <span>l'excellence ?</span>
+          </h2>
+          <p class="cta-subtitle">
+            Un concierge Evakech vous répond dans les 2h maximum
+          </p>
+          
+          {/* Éléments de confiance */}
+          <div class="trust-elements">
+            <div class="trust-item">
+              <div class="trust-icon">⚡</div>
+              <div class="trust-text">
+                <strong>Réponse rapide</strong>
+                <span>Sous 2h maximum</span>
+              </div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">🔒</div>
+              <div class="trust-text">
+                <strong>100% sécurisé</strong>
+                <span>Données cryptées SSL</span>
+              </div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">⭐</div>
+              <div class="trust-text">
+                <strong>+500 clients</strong>
+                <span>Nous font confiance</span>
+              </div>
+            </div>
+          </div>
+        </div>
         
-        <ContactForm client:visible />
+        {/* Colonne droite - Formulaire */}
+        <div class="cta-form-container">
+          <div class="form-glassmorphism">
+            <ContactForm client:visible />
+          </div>
+        </div>
       </div>
     </section>
   </main>

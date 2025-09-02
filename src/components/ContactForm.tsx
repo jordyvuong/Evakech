@@ -256,14 +256,13 @@ export default ContactForm;
 // Styles CSS
 const styles = `
 .contact-form {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(248, 245, 240, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(207, 174, 112, 0.2);
+  border-radius: 25px;
+  padding: 40px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(13, 13, 13, 0.15);
 }
 
 .form-row {
@@ -279,22 +278,25 @@ const styles = `
 
 .form-group label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 10px;
+  color: rgba(13, 13, 13, 0.8);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   font-weight: 500;
-  color: #2c3e50;
-  font-size: 0.95rem;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
   width: 100%;
-  padding: 0.75rem 1rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 1rem;
+  padding: 15px 20px;
+  background: rgba(248, 245, 240, 0.5);
+  border: 1px solid rgba(207, 174, 112, 0.3);
+  border-radius: 15px;
+  color: #0D0D0D;
+  font-size: 16px;
   transition: all 0.3s ease;
-  background: #fff;
   box-sizing: border-box;
 }
 
@@ -303,15 +305,17 @@ const styles = `
 .form-group textarea:focus {
   outline: none;
   border-color: #CFAE70;
-  box-shadow: 0 0 0 3px rgba(207, 174, 112, 0.1);
+  background: rgba(248, 245, 240, 0.8);
+  box-shadow: 0 0 20px rgba(207, 174, 112, 0.1);
 }
 
 .form-group input:disabled,
 .form-group select:disabled,
 .form-group textarea:disabled {
-  background: #f8f9fa;
-  color: #6c757d;
+  background: rgba(191, 182, 164, 0.3);
+  color: rgba(13, 13, 13, 0.5);
   cursor: not-allowed;
+  border-color: rgba(191, 182, 164, 0.5);
 }
 
 .form-group textarea {
@@ -334,35 +338,40 @@ const styles = `
 
 .alert {
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: 15px;
   margin-bottom: 1.5rem;
   text-align: center;
   font-weight: 500;
+  backdrop-filter: blur(10px);
 }
 
 .alert-success {
-  background: rgba(16, 185, 129, 0.1);
-  color: #059669;
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  background: rgba(207, 174, 112, 0.1);
+  color: #0D0D0D;
+  border: 1px solid rgba(207, 174, 112, 0.3);
 }
 
 .alert-error {
-  background: rgba(239, 68, 68, 0.1);
-  color: #dc2626;
-  border: 1px solid rgba(239, 68, 68, 0.2);
+  background: rgba(191, 182, 164, 0.2);
+  color: rgba(13, 13, 13, 0.8);
+  border: 1px solid rgba(191, 182, 164, 0.4);
 }
 
 .form-submit {
   width: 100%;
-  padding: 1rem 2rem;
+  padding: 20px;
   background: linear-gradient(135deg, #CFAE70 0%, #B59A5C 100%);
-  color: white;
+  color: #0D0D0D;
   border: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 600;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
   margin-top: 1rem;
   display: flex;
   align-items: center;
@@ -370,9 +379,27 @@ const styles = `
   gap: 0.5rem;
 }
 
+.form-submit::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(248, 245, 240, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.form-submit:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
 .form-submit:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(207, 174, 112, 0.3);
+  box-shadow: 0 20px 40px rgba(207, 174, 112, 0.3);
 }
 
 .form-submit:disabled {
